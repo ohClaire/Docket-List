@@ -2,6 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 
 function App() {
+
+  const callBackend = async () => {
+    try {
+      const response = await fetch('http://localhost:8000/hello_world', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -17,6 +33,9 @@ function App() {
         >
           Learn React
         </a>
+        <button onClick={callBackend}>
+          Call Backend
+        </button>
       </header>
     </div>
   );
